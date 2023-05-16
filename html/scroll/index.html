@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="./style.css" />
+        <title>Fast Bank</title>
+    </head>
+    <body>
+        <div id="main-img-wrapper">
+            <img width="320" src="./images/Lovepik_com-401339128-data-management-data-analysis-icon-free-vector-illustration-mate.png" alt="coding image" />
+        </div>
+        <div id="intro-main">
+            <p>이미 모두의 은행, 패스트뱅크</p>
+            <p>함께 일해요.</p>
+            <p id="join-us-text">Join us!</p>
+            <img id="down-arrow-icon" src="./images/down-arrow.png" alt="" />
+        </div>
+        <ul id="list-item-wrapper">
+            <li class="list-item">26주적금</li>
+            <li class="list-item">저금</li>
+            <li class="list-item">패스트캠퍼스</li>
+            <li class="list-item">떡볶이</li>
+            <li class="list-item">치킨</li>
+            <li class="list-item">축구</li>
+            <li class="list-item">축구선수</li>
+            <li class="list-item">마이너스통장대출</li>
+            <li class="list-item">26주적금</li>
+            <li class="list-item">저금</li>
+            <li class="list-item">패스트캠퍼스</li>
+            <li class="list-item">떡볶이</li>
+            <li class="list-item">치킨</li>
+            <li class="list-item">축구</li>
+            <li class="list-item">축구선수</li>
+            <li class="list-item">마이너스통장대출</li>
+            <li class="list-item">26주적금</li>
+            <li class="list-item">저금</li>
+            <li class="list-item">패스트캠퍼스</li>
+            <li class="list-item">떡볶이</li>
+            <li class="list-item">치킨</li>
+            <li class="list-item">축구</li>
+            <li class="list-item">축구선수</li>
+            <li class="list-item">마이너스통장대출</li>
+            <li class="list-item">26주적금</li>
+            <li class="list-item">저금</li>
+            <li class="list-item">패스트캠퍼스</li>
+            <li class="list-item">떡볶이</li>
+            <li class="list-item">치킨</li>
+            <li class="list-item">축구</li>
+            <li class="list-item">축구선수</li>
+            <li class="list-item">마이너스통장대출</li>
+        </ul>
+        <main>
+            <section id="panel1-img">
+                <img id="flying-santa-image" src="./images/santa_flying.png" alt="" />
+            </section>
+        </main>
+    </body>
+
+    <script>
+        const listStyleChangeStartY = 373; //리스트 시작 위치
+        const listStyleChangeEndY = 1585; //리스트 끝나는 위치
+        const listItems = document.querySelectorAll(".list-item"); //리스트 아이템
+        const division = (listStyleChangeEndY - listStyleChangeStartY) / listItems.length; //리스트 변경 구간을 리스트 아이템 갯수로 나눈 값
+        //이 값은 각 리스트 아이템마다의 스타일 변경 범위를 정의하는데 사용된다.
+
+        const panel1Img = document.getElementById("panel1-img");
+        const flyingSantaImage = document.getElementById("flying-santa-image");
+
+        window.addEventListener("scroll", () => {
+            /* 리스트 */
+            if (document.getElementById("on")) {
+                document.getElementById("on").removeAttribute("id");
+            }
+
+            //scroll위치가 listStyleChangeStartY 보다 크고 listStyleChangeEndY 보다 작은 경우
+            if (window.scrollY > listStyleChangeStartY && window.scrollY < listStyleChangeEndY) {
+                //targetIndex는 현재 스크롤 위치를 기반으로 리스트 아이템의 인덱스를 계산
+                //이를 위해 스크롤 위치와 listStyleChangeStartY 사이의 차이를 division으로 나눈 값이 targetIndex가 된다.
+                //예를 들어, 스크롤 위치가 listStyleChangeStartY와 listStyleChangeEndY 사이에 있는 경우,
+                //targetIndex는 0에서 리스트 아이템의 갯수까지의 범위에서 값을 가짐
+                const targetIndex = Math.floor((window.scrollY - listStyleChangeStartY) / division);
+
+                //인덱스에 맞춘 리스트에 #on 추가
+                listItems[targetIndex].id = "on";
+            }
+
+            /* 산타 */
+            //현재 스크롤위치(window.scrollY)와 화면의 높이를 합한 값.
+            //이를 통해 화면의 아래쪽 위치를 계산한다
+            const scrollYBottom = window.scrollY + document.documentElement.clientHeight;
+
+            //scrollYBottom이 panel1Img의 상단 오프셋보다 크고, panel1Img의 하단 오프셋 보다 작은 경우
+            if (scrollYBottom > panel1Img.offsetTop && scrollYBottom < panel1Img.offsetTop + panel1Img.offsetHeight + 100) { //산타 이미지가 움직일 범위
+
+                //산타 이미지의 가로 이동 거리를 계산
+                //현재 스크롤 위치와 panel1Img의 상단 오프셋 사이의 거리를 기반으로 계산되며, 이 값을 통해 이미지가 가로로 이동
+                const translateX = 80 - 80 * 1.5 * (scrollYBottom - panel1Img.offsetTop) / (panel1Img.offsetHeight + 100);
+
+                //산타 이미지의 세로 이동 거리를 계산
+                //현재 스크롤 위치와 panel1Img의 상단 오프셋 사이의 거리를 기반으로 계산되며, 이 값을 통해 이미지가 세로로 이동
+                const translateY = -13 + 13 * 1.8 * (scrollYBottom - panel1Img.offsetTop) / (panel1Img.offsetHeight + 100);
+
+                //산타 이미지의 회전 각도 계산
+                //현재 스크롤 위치와 panel1Img의 상단 오프셋 사이의 거리를 기반으로 계산되며, 이 값을 통해 이미지가 회전
+                const rotationDegree = 23 - 23 * 1.7 * (scrollYBottom - panel1Img.offsetTop) / (panel1Img.offsetHeight + 100);
+
+                flyingSantaImage.style.transform = `translate(${translateX}px, ${translateY}px) rotate(${rotationDegree}deg)`;
+            }
+        });
+    </script>
+</html>
