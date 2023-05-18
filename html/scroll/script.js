@@ -1,7 +1,7 @@
 /** 리스트 */
+const STANDARD_OFFSET = 350;
 const listItemWrapper = document.getElementById("list-item-wrapper");
 const listItems = Array.from(document.querySelectorAll(".list-item"));
-const STANDARD_OFFSET = 350;
 
 function updateListItemStyle() {
     const scrollY = window.scrollY;
@@ -23,12 +23,12 @@ function updateListItemStyle() {
 }
 
 /** 산타 */
-const panel1ImgEl = document.getElementById("panel1-img");
-const flyingSantaImageEl = document.getElementById("flying-santa-image");
 const SCROLL_THRESHOLD = 100;
 const MAX_TRANSLATE_X = 80;
 const MAX_TRANSLATE_Y = 13;
 const MAX_ROTATION_DEGREE = 23;
+const panel1ImgEl = document.getElementById("panel1-img");
+const flyingSantaImageEl = document.getElementById("flying-santa-image");
 
 function updateSantaStyle() {
     const scrollYBottom = window.scrollY + document.documentElement.clientHeight;
@@ -46,13 +46,13 @@ function updateSantaStyle() {
 }
 
 /** 비디오 */
+const VIDEO_PLAY_BACK = 500;
+const fixedDescriptionAppearTiming = 3470;
+const fixedDescriptionAppearEnds = 3800;
 const videoElement = document.getElementById("video");
 const videoSection = document.getElementById("video-section");
 const fixedWrapper = document.getElementById("fixed-wrapper");
 const fixedDescription = document.getElementById("fixed-description");
-const VIDEO_PLAY_BACK = 500;
-const fixedDescriptionAppearTiming = 3470;
-const fixedDescriptionAppearEnds = 3800;
 
 function centerElement(elementId, video) {
     const element = document.getElementById(elementId);
@@ -84,7 +84,6 @@ function adjustVideoSectionHeight() {
 //fixedDescription 등장 및 투명도 조정
 function adjustFixedDescriptionAppearance() {
     const scrollOffset = window.scrollY;
-    console.log(scrollOffset);
 
     if (scrollOffset > fixedDescriptionAppearTiming && scrollOffset < fixedDescriptionAppearEnds) {
         fixedDescription.style.transform = `translateY(${fixedDescriptionAppearEnds - scrollOffset}px)`;
@@ -130,10 +129,10 @@ function handleScroll() {
 window.addEventListener("scroll", handleScroll);
 
 /** 슬라이드 */
+let CURRENT_IMAGE_INDEX = 0;
 const sliderImages = document.querySelectorAll(".slider-image");
 const sliderIndex = document.getElementById("slider-index");
 const sliderContentWrapper = document.getElementById("slider-content-wrapper");
-let CURRENT_IMAGE_INDEX = 0;
 
 function changeSlider(step) {
     CURRENT_IMAGE_INDEX += step;
