@@ -3,8 +3,8 @@ const ctx = canvas.getContext("2d");
 
 const dpr = window.devicePixelRatio; //2)
 
-const canvasWidth = 300; //1)
-const canvasHeight = 300;
+const canvasWidth = innerWidth; //1)
+const canvasHeight = innerHeight;
 
 canvas.style.width = `${canvasWidth}px`;
 canvas.style.height = `${canvasHeight}px`;
@@ -15,24 +15,41 @@ ctx.scale(dpr, dpr);
 
 //4)
 class Particle {
-    constructor(x, y, radius) {
+    constructor(x, y, radius, vy) {
         this.x = x;
         this.y = y;
-        this.radius = radius;
+        this.radius = radius; //반지름
+        this.vy = vy; //y의 속도값을 변수로 초기화
+    }
+    //각각의 파티클들의 constructor에서 초기화된 값을 변경시키는 작업
+    update() {
+        this.y += this.vy; //각각 다른 속도로 공이 떨어지는 효과
     }
     draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, (Math.PI / 180) * 360); //3)
-        ctx.fillStyle = "yellow";
+        ctx.fillStyle = "orange";
         ctx.fill();
         ctx.closePath();
     }
 }
 
-const x = 100;
-const y = 100;
-const radius = 50;
-const particle = new Particle(x, y, radius);
+const TOTAL = 20;
+const randomNumBetween = (min, max) => {
+    return Math.random() * (max - min + 1) + min; //min, max 사이의 값 구하는 함수
+};
+
+let particles = []; //빈 배열로 초기화
+
+for (let i = 0; i < TOTAL; i++) {
+    const x = randomNumBetween(0, canvasWidth); //0부터 전체 가로 길이 사이 랜덤 위치에서 초기화 된다.
+    const y = randomNumBetween(0, canvasHeight); //0부터 전체 세로 길이 사이 랜덤 위치에서 초기화 된다.
+    const radius = randomNumBetween(50, 100);
+    const vy = randomNumBetween(1, 5);
+    const particle = new Particle(x, y, radius, vy);
+
+    particles.push(particle); //for문안에서 생성된 값을 particles 안에 넣어준다.
+}
 
 let interval = 1000 / 60;
 let now, delta;
@@ -46,10 +63,19 @@ function animate() {
     if (delta < interval) return;
 
     ctx.clearRect(0, 0, canvasWidth, canvasHeight); //5)
-    //x를 1px씩 이동시키기
 
+    particles.forEach((particle) => {
+        particle.update();
+        particle.draw();
 
-    particle.draw();
+        if (particle.y - particle.radius > canvasHeight) {
+            particle.y = -particle.radius;
+
+            particle.x = randomNumBetween(0, canvasWidth);
+            particle.radius = randomNumBetween(50, 100);
+            particle.vy = randomNumBetween(1, 5);
+        }
+    });
 
     then = now - (delta % interval);
 }
