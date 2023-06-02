@@ -13,6 +13,34 @@ canvas.width = canvasWidth * dpr;
 canvas.height = canvasHeight * dpr;
 ctx.scale(dpr, dpr);
 
+//dat GUI
+const feGaussianBlur = document.querySelector("feGaussianBlur");
+const feColorMatrix = document.querySelector("feColorMatrix");
+const controls = new (function () {
+    this.blurValue = 400;
+    this.alphaChannel = 100;
+    this.alphaOffset = -23;
+    this.acc = 1.03;
+})();
+
+let gui = new dat.GUI();
+const f1 = gui.addFolder("gooey Effect");
+const f2 = gui.addFolder("acc Effect");
+
+f1.add(controls, "blurValue", 0, 100).onChange((value) => {
+    feGaussianBlur.setAttribute("stdDeviation", value);
+});
+f1.add(controls, "alphaChannel", 1, 200).onChange((value) => {
+    feColorMatrix.setAttribute("values", `1 0 0 0 0  0 1 0 0 0  0 0 1 0 0   0 0 0 ${value} ${controls.alphaOffset}`);
+});
+f1.add(controls, "alphaOffset", -40, -10).onChange((value) => {
+    feColorMatrix.setAttribute("values", `1 0 0 0 0  0 1 0 0 0  0 0 1 0 0   0 0 0 ${controls.alphaChannel} ${value}`);
+});
+
+f2.add(controls, "acc", 1, 1.5, 0.01).onChange((value) => {
+    particles.forEach((particle) => (particle.acc = value));
+});
+
 //4)
 class Particle {
     constructor(x, y, radius, vy) {
@@ -20,9 +48,11 @@ class Particle {
         this.y = y;
         this.radius = radius; //반지름
         this.vy = vy; //y의 속도값을 변수로 초기화
+        this.acc = 1.03;
     }
     //각각의 파티클들의 constructor에서 초기화된 값을 변경시키는 작업
     update() {
+        this.y *= this.acc; //중력 가속도 효과
         this.y += this.vy; //각각 다른 속도로 공이 떨어지는 효과
     }
     draw() {
