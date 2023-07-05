@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            :root {
+                --btn-focus-scale: 0.95;
+                --b2: 0 0% 95%;
+                --rounded-btn: 0.5rem;
+                --border-btn: 1px;
+                --animation-btn: 0.25s;
+                --btn-text-case: uppercase;
+                --bc: 215 28% 17%;
+                --tw-border-opacity: 1;
+                --tw-bg-opacity: 1;
+                --tw-text-opacity: 1;
+            }
+
+            *,
+            :before,
+            :after {
+                box-sizing: border-box;
+                border-width: 0;
+                border-style: solid;
+                border-color: #e5e7eb;
+            }
+
+            :before,
+            :after {
+                --tw-content: "";
+            }
+
+            html {
+                line-height: 1.5;
+                -webkit-text-size-adjust: 100%;
+                tab-size: 4;
+                font-family: Noto Sans, sans-serif;
+                font-feature-settings: normal;
+                font-variation-settings: normal;
+            }
+
+            body {
+                margin: 0;
+                line-height: inherit;
+            }
+
+            svg {
+                display: block;
+                width: 1.5rem;
+                height: 1.5rem;
+            }
+
+            @keyframes button-pop {
+                0% {
+                    transform: scale(var(--btn-focus-scale, 0.98));
+                }
+                40% {
+                    transform: scale(1.02);
+                }
+                100% {
+                    transform: scale(1);
+                }
+            }
+
+            .btn {
+                display: inline-flex;
+                flex-shrink: 0;
+                cursor: pointer;
+                -webkit-user-select: none;
+                user-select: none;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: center;
+                border-color: transparent;
+                border-color: hsl(var(--b2) / var(--tw-border-opacity));
+                text-align: center;
+                transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter,
+                    -webkit-backdrop-filter;
+                transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter,
+                    backdrop-filter;
+                transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter,
+                    backdrop-filter, -webkit-backdrop-filter;
+                transition-duration: 0.2s;
+                transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+                border-radius: var(--rounded-btn, 0.5rem);
+                height: 3rem;
+                padding-left: 1rem;
+                padding-right: 1rem;
+                font-size: 0.875rem;
+                line-height: 1.25rem;
+                line-height: 1em;
+                min-height: 3rem;
+                gap: 0.5rem;
+                font-weight: 600;
+                text-decoration-line: none;
+                border-width: var(--border-btn, 1px);
+                animation: button-pop var(--animation-btn, 0.25s) ease-out;
+                text-transform: var(--btn-text-case, uppercase);
+                background-color: hsl(var(--b2) / var(--tw-bg-opacity));
+                color: hsl(var(--bc) / var(--tw-text-opacity));
+                outline-color: hsl(var(--bc) / 1);
+            }
+
+            .btn-disabled,
+            .btn[disabled],
+            .btn:disabled {
+                pointer-events: none;
+            }
+            
+            .btn:is(input[type="checkbox"]),
+            .btn:is(input[type="radio"]) {
+                -webkit-appearance: none;
+                appearance: none;
+            }
+
+            .btn:is(input[type="checkbox"]):after,
+            .btn:is(input[type="radio"]):after {
+                --tw-content: attr(aria-label);
+                content: var(--tw-content);
+            }
+
+            .btn:active:hover,
+            .btn:active:focus {
+                animation: button-pop 0s ease-out;
+                transform: scale(var(--btn-focus-scale, 0.97));
+            }
+
+            .btn-active {
+                --tw-border-opacity: 1;
+                border-color: hsl(var(--b3) / var(--tw-border-opacity));
+                --tw-bg-opacity: 1;
+                background-color: hsl(var(--b3) / var(--tw-bg-opacity));
+            }
+
+            .btn:focus-visible {
+                outline-style: solid;
+                outline-width: 2px;
+                outline-offset: 2px;
+            }
+        </style>
+    </head>
+    <body>
+        <button class="btn">
+            Button
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                ></path>
+            </svg>
+        </button>
+    </body>
+</html>
