@@ -1,0 +1,21 @@
+#button-container {
+    display: flex;
+    gap: 10px;
+}
+
+#button-container button {
+    cursor: pointer;
+}
+
+.map01 .map011 {
+    fill: #EEEEEE;
+}
+.map01 .map012 {
+    fill: #222222;
+}
+.map01.on .map011 {
+    fill: #000;
+}
+.map01.on .map012 {
+    fill: #fff;
+}
