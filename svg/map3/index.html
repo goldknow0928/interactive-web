@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>SVG Color Change</title>
+    </head>
+    <body>
+        <object data="map.svg" type="image/svg+xml" id="mySvg"></object>
+
+        <button id="changeColorButton">Change Color</button>
+
+        <script>
+            var button = document.getElementById("changeColorButton");
+            var svgObject = document.getElementById("mySvg");
+            var svgDocument = svgObject.contentDocument; // Get the document within the object
+            var paths = svgDocument.querySelectorAll(".map01");
+            console.log(paths);
+            button.addEventListener("click", function () {
+                changePathColor();
+            });
+
+            function changePathColor() {
+                for (var i = 0; i < paths.length; i++) {
+                    paths[i].setAttribute("fill", "black"); // 검정색으로 변경
+                }
+            }
+        </script>
+    </body>
+</html>

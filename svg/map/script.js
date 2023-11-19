@@ -15,7 +15,7 @@ const regions = [
 const buttonContainer = document.getElementById("button-container");
 
 regions.map((region) => {
-    //console.log(region);
+    console.log(region);
 
     //버튼 컨테이너에 버튼 생성해서 넣기
     const button = document.createElement("button");
