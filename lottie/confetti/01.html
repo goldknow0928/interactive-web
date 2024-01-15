@@ -13,7 +13,7 @@
         <h1>Lottie</h1>
         <div class="wrap">
 
-            <div class="lottie-container">
+            <!-- <div class="lottie-container">
                 <h2>default</h2>
                 <lottie-player
                     src="https://assets4.lottiefiles.com/packages/lf20_obhph3sh.json"
@@ -39,11 +39,39 @@
                 <h2>play/stop</h2>
                 <lottie-player src="https://assets4.lottiefiles.com/packages/lf20_obhph3sh.json" background="transparent" speed="1"></lottie-player>
                 <button type="button" class="btn">START / STOP</button>
-            </div>
+            </div> -->
         </div>
+        <img src="./firecracker.gif" alt="">
+        <div class="wrap">
 
+            <div class="lottie-container">
+                <h2>default</h2>
+                <lottie-player
+                    src="./firecracker.json"
+                    background="transparent"
+                    speed="1"
+                    loop
+                    autoplay
+                ></lottie-player>
+            </div>
+
+            <div class="lottie-container">
+                <h2>default</h2>
+                <lottie-player
+                    src="./test.json"
+                    background="transparent"
+                    speed="1"
+                    loop
+                    autoplay
+                ></lottie-player>
+            </div>
+
+            
+            
+        </div>
         <!-- js에서 lottie 컨트롤 -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.5.9/lottie.min.js"></script>
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.5.9/lottie.min.js"></script> -->
+        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
         <script>
             const confetti = document.getElementById("lottie-test");
             
