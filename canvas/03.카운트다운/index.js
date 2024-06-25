@@ -6,7 +6,7 @@ const dpr = window.devicePixelRatio;
 let canvasWidth = innerWidth;
 let canvasHeight = innerHeight;
 const interval = 1000 / 60; //fps
-const particles = [];
+const particles = []; //파티클 그리기
 
 function init() {
     canvasWidth = innerWidth;
@@ -19,7 +19,7 @@ function init() {
 }
 
 function createRing() {
-    const PARTICLE_NUM = 20;
+    const PARTICLE_NUM = 800;
 
     for (let i = 0; i < PARTICLE_NUM; i++) {
         particles.push(new Particle());
@@ -38,10 +38,14 @@ function render() {
         if (delta < interval) return;
         ctx.clearRect(0, 0, canvasWidth, canvasHeight);
 
-        particles.forEach((particle, index) => {
-            particle.update();
-            particle.draw(ctx);
-        });
+        for (let i = particles.length - 1; i >= 0; i--) {
+            particles[i].update();
+            particles[i].draw(ctx);
+
+            if (particles[i].opacity < 0) particles.splice(i, 1);
+        }
+
+        // console.log(particles.length);
 
         then = now - (delta % interval);
     };
