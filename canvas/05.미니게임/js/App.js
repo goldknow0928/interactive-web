@@ -12,8 +12,8 @@ export default class App {
         //이미지 불러오기
         this.backgrounds = [
             new Background({ img: document.querySelector("#bg1-img"), speed: -1 }),
-            new Background({ img: document.querySelector("#bg2-img"), speed: -2 }),
-            new Background({ img: document.querySelector("#bg3-img"), speed: -4 }),
+            new Background({ img: document.querySelector("#bg2-img"), speed: -3 }),
+            new Background({ img: document.querySelector("#bg3-img"), speed: -5 }),
         ];
 
         window.addEventListener("resize", this.resize.bind(this));
