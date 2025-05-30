@@ -1,0 +1,2 @@
+echo "20" > .nvmrc
+nvm use

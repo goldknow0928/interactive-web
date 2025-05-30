@@ -52,3 +52,31 @@ export default tseslint.config({
   },
 })
 ```
+
+
+## 💻 개발 환경 설정 (Windows 기준)
+
+이 프로젝트는 **Node.js v20 이상**에서 작동합니다.  
+[**nvm-windows**](https://github.com/coreybutler/nvm-windows)로 Node.js 버전을 쉽게 관리할 수 있습니다.
+
+---
+
+### 📌 1. nvm-windows 설치
+
+1. 아래 링크에서 최신 `nvm-setup.zip` 다운로드 및 설치  
+   👉 https://github.com/coreybutler/nvm-windows/releases
+
+2. 설치 후, 명령 프롬프트(CMD) 또는 PowerShell 열기
+
+---
+
+### 🚀 2. Node.js v20 설치 및 사용
+
+```bash
+nvm install 20
+nvm use 20
+
+nvm use 20은 현재 터미널 세션에만 적용됩니다.
+VSCode에서는 터미널 다시 열 때마다 실행해줘야 합니다.
+
+npm run storybook
