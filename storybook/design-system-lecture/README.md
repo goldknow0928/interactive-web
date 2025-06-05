@@ -79,4 +79,9 @@ nvm use 20
 nvm use 20은 현재 터미널 세션에만 적용됩니다.
 VSCode에서는 터미널 다시 열 때마다 실행해줘야 합니다.
 
+
+// 스토리북
 npm run storybook
+
+// 메인
+npm run dev
