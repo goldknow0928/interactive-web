@@ -1,0 +1,8 @@
+{# src/components/button/button.njk #}
+<button
+  type="button"
+  class="storybook-button storybook-button--{{ size | default('medium') }}{% if primary %} storybook-button--primary{% else %} storybook-button--secondary{% endif %}"
+  style="background-color: {{ backgroundColor | default('#eee') }}"
+>
+    {{ label | default('Button') }}
+</button>
